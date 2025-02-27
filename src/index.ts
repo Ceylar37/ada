@@ -11,7 +11,9 @@ program.name('ada');
 program.version(packageJSON.version);
 
 Object.values(commands).map((command) => {
-  const currentCommand = program.command(command.name, { isDefault: command.isDefault });
+  const currentCommand = program.command(command.name, {
+    isDefault: command.isDefault
+  });
 
   currentCommand.description(command.description);
 
