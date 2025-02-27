@@ -1,4 +1,5 @@
 import js from '@eslint/js';
+
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
@@ -20,16 +21,11 @@ export default ts.config(
       'prefer-const': 'error',
       'no-else-return': 'error',
 
-      'react-hooks/exhaustive-deps': 'off',
-
-      'no-console': 'warn',
-
       'simple-import-sort/exports': 'error',
       'simple-import-sort/imports': [
         'error',
         {
           groups: [
-            ['^react', '^@?\\w'],
             ['^@(([\\/.]?\\w)|assets|test-utils)'],
             ['^\\u0000'],
             ['^\\.\\.(?!/?$)', '^\\.\\./?$'],
