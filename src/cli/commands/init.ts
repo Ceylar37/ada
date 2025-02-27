@@ -91,7 +91,13 @@ const init: AppCommand<typeof initSchema> = {
       );
     }
 
-    Object.entries(rest).forEach(([key, value]) => {
+    const initOptions = Object.entries(rest);
+
+    if (initOptions.length === 0) {
+      return logger.error('Specify at least one of the instrument to setup.');
+    }
+
+    initOptions.forEach(([key, value]) => {
       if (value) {
         setupFunctionsDictionary[key as keyof typeof rest](manager);
       }
