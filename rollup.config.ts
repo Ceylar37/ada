@@ -3,7 +3,6 @@ import babel from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 import resolve from '@rollup/plugin-node-resolve';
-import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
 
 import packageJSON from './package.json';
@@ -45,15 +44,12 @@ export default [
       }),
       babel({
         exclude: /node_modules/,
-        extensions: ['.js', '.ts'],
-        babelHelpers: 'bundled',
-        presets: ['@babel/preset-env', '@babel/preset-typescript']
+        extensions: ['.js', '.ts']
       }),
       json(),
       copy({
         targets: [{ src: 'resources/*', dest: 'dist/resources' }]
-      }),
-      ...(!isDev ? [terser()] : [])
+      })
     ]
   }
 ];
