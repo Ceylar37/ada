@@ -5,15 +5,15 @@
   "license": "MIT",
   "type": "module",
   "bin": {
-    "ada": "dist/index.js"
+    "ada": "bin/index.js"
   },
   "scripts": {
     "build": "shx rm -rf dist && cross-env NODE_ENV=production rollup -c --bundleConfigAsCjs",
     "dev": "shx rm -rf dist && cross-env NODE_ENV=development rollup -c --bundleConfigAsCjs --watch",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "format": "prettier --check src --ignore-path .gitignore",
-    "format:fix": "prettier --write src --ignore-path .gitignore"
+    "format": "prettier --check src --ignore-path .prettierignore",
+    "format:fix": "prettier --write src --ignore-path .prettierignore"
   },
   "devDependencies": {
     "@babel/core": "^7.26.9",

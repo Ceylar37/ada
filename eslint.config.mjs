@@ -58,6 +58,6 @@ export default ts.config(
     files: ['/src/**/*.js', '/src/**/*.jsx']
   },
   {
-    ignores: ['node_modules', 'build', 'dist']
+    ignores: ['node_modules', 'bin']
   }
 );
