@@ -1,7 +1,7 @@
 {
   "name": "@ceylar/ada",
   "description": "CLI to help you initialize projects",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "license": "MIT",
   "type": "module",
   "bin": {
@@ -12,8 +12,8 @@
     "dev": "shx rm -rf dist && cross-env NODE_ENV=development rollup -c --bundleConfigAsCjs --watch",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "format": "prettier --check src --ignore-path .prettierignore",
-    "format:fix": "prettier --write src --ignore-path .prettierignore"
+    "format": "prettier --check src --ignore-path .gitignore",
+    "format:fix": "prettier --write src --ignore-path .gitignore"
   },
   "devDependencies": {
     "@babel/core": "^7.26.9",
