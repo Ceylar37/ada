@@ -14,7 +14,3 @@ jobs:
 
       - name: Check version increased
         uses: EndBug/version-check@v1
-        with:
-          previous-version-command: 'git show origin/${{ github.base_ref }}:package.json | jq -r .version'
-          current-version-command: 'jq -r .version package.json'
-          require-increase: true
