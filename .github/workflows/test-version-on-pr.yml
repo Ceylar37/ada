@@ -12,7 +12,27 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Check version increased
-        uses: EndBug/version-check@v2
-        with:
-          diff-search: true
+      - name: Get base (target) branch version
+        id: base-version
+        run: |
+          git fetch origin ${{ github.base_ref }}
+          BASE_VERSION=$(git show origin/${{ github.base_ref }}:package.json | jq -r .version)
+          echo "base_version=$BASE_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Get current (PR) branch version
+        id: pr-version
+        run: |
+          PR_VERSION=$(jq -r .version package.json)
+          echo "pr_version=$PR_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Compare versions
+        run: |
+          BASE=${{ steps.base-version.outputs.base_version }}
+          PR=${{ steps.pr-version.outputs.pr_version }}
+
+          if [ "$BASE" = "$PR" ]; then
+            echo "::error::Version in package.json must be incremented! Current: $PR, expected higher than $BASE"
+            exit 1
+          fi
+
+          echo "Version increased from $BASE to $PR - validation passed"
