@@ -48,7 +48,7 @@ export default [
       }),
       json(),
       copy({
-        targets: [{ src: 'resources/*', dest: 'dist/resources' }]
+        targets: [{ src: 'resources/*', dest: 'bin/resources' }]
       })
     ]
   }
