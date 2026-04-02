@@ -1,7 +1,7 @@
-import { managerSchema } from './schema';
+import type { z } from 'zod'
 
-import { z } from 'zod';
+import type { managerSchema } from './schema'
 
-type Manager = z.infer<typeof managerSchema>;
+type Manager = z.infer<typeof managerSchema>
 
-export type { Manager };
+export type { Manager }

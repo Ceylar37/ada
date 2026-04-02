@@ -1,14 +1,14 @@
-import { resolveCurrentDir } from '@/util';
+import type { Config } from './type'
 
-import { get } from './get';
-import { Config } from './type';
+import fs from 'node:fs'
 
-import fs from 'fs';
+import { resolveCurrentDir } from '@/util'
+import { get } from './get'
 
-const set = (newConfigData: Config) => {
-  const configPath = resolveCurrentDir('config.json');
-  const config = get();
-  fs.writeFileSync(configPath, JSON.stringify({ ...config, ...newConfigData }));
-};
+function set(newConfigData: Config) {
+  const configPath = resolveCurrentDir('config.json')
+  const config = get()
+  fs.writeFileSync(configPath, JSON.stringify({ ...config, ...newConfigData }))
+}
 
-export { set };
+export { set }

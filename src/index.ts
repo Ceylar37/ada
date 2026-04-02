@@ -1,36 +1,37 @@
 #!/usr/bin/env node
-import * as commands from '@/cli/commands';
-import { parseCliError } from '@/cli/util';
-import { logger } from '@/util';
+import process from 'node:process'
 
-import packageJSON from '../package.json';
+import { program } from 'commander'
+import * as commands from '@/cli/commands'
+import { parseCliError } from '@/cli/util'
+import { logger } from '@/util'
+import packageJSON from '../package.json'
 
-import { program } from 'commander';
+program.name('ada')
+program.version(packageJSON.version)
 
-program.name('ada');
-program.version(packageJSON.version);
-
-Object.values(commands).map((command) => {
+Object.values(commands).forEach((command) => {
   const currentCommand = program.command(command.name, {
-    isDefault: command.isDefault
-  });
+    isDefault: command.isDefault,
+  })
 
-  currentCommand.description(command.description);
+  currentCommand.description(command.description)
 
   command.options?.forEach((option) => {
-    currentCommand.option(option[0], option[1]);
-  });
+    currentCommand.option(option[0], option[1])
+  })
 
   currentCommand.action((options) => {
-    const { success, data, error } = command.schema.safeParse(options);
+    const { success, data, error } = command.schema.safeParse(options)
     if (success) {
       // @ts-expect-error: type inference
-      command.action(data);
-    } else {
-      logger.error(`${parseCliError(error, process.argv, command.options || [])}`);
+      command.action(data)
     }
-  });
-});
+    else {
+      logger.error(`${parseCliError(error, process.argv, command.options || [])}`)
+    }
+  })
+})
 
 // program
 //   .command('init', { isDefault: true })
@@ -49,4 +50,4 @@ Object.values(commands).map((command) => {
 //     console.log('set', options);
 //   });
 
-program.parse(process.argv);
+program.parse(process.argv)

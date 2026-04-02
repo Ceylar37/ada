@@ -1,7 +1,7 @@
-import { resolve } from 'path';
+import { resolve } from 'node:path'
 
-const resolveCurrentDir = (...paths: string[]) => {
-  return resolve(import.meta.dirname, ...paths);
-};
+function resolveCurrentDir(...paths: string[]) {
+  return resolve(import.meta.dirname, ...paths)
+}
 
-export { resolveCurrentDir };
+export { resolveCurrentDir }
