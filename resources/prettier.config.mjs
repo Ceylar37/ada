@@ -8,5 +8,5 @@ export default {
   tabWidth: 2,
   useTabs: false,
   endOfLine: 'crlf',
-  arrowParens: 'always'
-};
+  arrowParens: 'always',
+}

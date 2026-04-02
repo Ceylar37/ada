@@ -1,55 +1,56 @@
-import alias from '@rollup/plugin-alias';
-import babel from '@rollup/plugin-babel';
-import commonjs from '@rollup/plugin-commonjs';
-import json from '@rollup/plugin-json';
-import resolve from '@rollup/plugin-node-resolve';
-import typescript from '@rollup/plugin-typescript';
+import { resolve as resolvePath } from 'node:path'
+import process from 'node:process'
+import alias from '@rollup/plugin-alias'
+import babel from '@rollup/plugin-babel'
+import commonjs from '@rollup/plugin-commonjs'
+import json from '@rollup/plugin-json'
 
-import packageJSON from './package.json';
+import resolve from '@rollup/plugin-node-resolve'
 
-import { resolve as resolvePath } from 'path';
-import copy from 'rollup-plugin-copy';
+import typescript from '@rollup/plugin-typescript'
+import copy from 'rollup-plugin-copy'
+import packageJSON from './package.json'
 
-const sourcemap = false;
-const input = 'src/index.ts';
-const banner = `/* @license ${packageJSON.name} v${packageJSON.version} */`;
+const sourcemap = false
+const input = 'src/index.ts'
+const banner = `/* @license ${packageJSON.name} v${packageJSON.version} */`
 
-const isDev = process.env.NODE_ENV === 'development';
+const isDev = process.env.NODE_ENV === 'development'
 
 /** @type {import('rollup').RollupOptions[]} */
 export default [
   {
     input,
-    output: Object.values(packageJSON.bin).map((bin) => ({
+    output: Object.values(packageJSON.bin).map(bin => ({
       format: 'esm',
       file: bin,
       sourcemap,
-      banner
+      banner,
     })),
     plugins: [
       alias({
-        entries: [{ find: '@', replacement: resolvePath(__dirname, './src') }]
+        entries: [{ find: '@', replacement: resolvePath(__dirname, './src') }],
       }),
       resolve({
-        extensions: ['.js', '.ts']
+        extensions: ['.js', '.ts'],
       }),
       commonjs({
         include: /node_modules/,
-        ignoreDynamicRequires: true
+        ignoreDynamicRequires: true,
       }),
       typescript({
         tsconfig: './tsconfig.json',
         compilerOptions: { noCheck: isDev },
-        noForceEmit: true
+        noForceEmit: true,
       }),
       babel({
         exclude: /node_modules/,
-        extensions: ['.js', '.ts']
+        extensions: ['.js', '.ts'],
       }),
       json(),
       copy({
-        targets: [{ src: 'resources/*', dest: 'bin/resources' }]
-      })
-    ]
-  }
-];
+        targets: [{ src: 'resources/*', dest: 'bin/resources' }],
+      }),
+    ],
+  },
+]

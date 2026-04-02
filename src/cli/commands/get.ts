@@ -1,8 +1,8 @@
-import { get as getConfig } from '@/config';
-import { selectConfigSchema } from '@/config/schema';
-import { isEmpty } from '@/util';
+import type { AppCommand } from '../type'
+import { get as getConfig } from '@/config'
+import { selectConfigSchema } from '@/config/schema'
 
-import { AppCommand } from '../type';
+import { isEmpty } from '@/util'
 
 const get: AppCommand<typeof selectConfigSchema> = {
   name: 'get',
@@ -11,11 +11,11 @@ const get: AppCommand<typeof selectConfigSchema> = {
   schema: selectConfigSchema,
   action: (options) => {
     if (isEmpty(options)) {
-      console.log(getConfig());
-      return;
+      console.log(getConfig())
+      return
     }
-    console.log(getConfig(options));
-  }
-};
+    console.log(getConfig(options))
+  },
+}
 
-export { get };
+export { get }
