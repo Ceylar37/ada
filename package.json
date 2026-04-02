@@ -27,7 +27,7 @@
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^16.0.0",
     "@rollup/plugin-typescript": "^12.1.2",
-    "@types/node": "^22.13.4",
+    "@types/node": "^25.5.0",
     "cross-env": "^7.0.3",
     "eslint": "^9.21.0",
     "eslint-plugin-react": "^7.37.4",

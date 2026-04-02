@@ -3,7 +3,9 @@
     "target": "ES2022",
     "lib": [
       "ES2023",
-      "dom"
+    ],
+    "types": [
+      "node"
     ],
     "module": "ESNext",
     "skipLibCheck": true,
