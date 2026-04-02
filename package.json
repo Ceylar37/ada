@@ -1,7 +1,7 @@
 {
   "name": "@ceylar/ada",
   "type": "module",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "CLI to help you initialize projects",
   "author": "ceylar37 <ceylar37@gmail.com>",
   "license": "MIT",
